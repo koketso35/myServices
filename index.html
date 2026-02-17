@@ -29,10 +29,16 @@
       from { opacity: 0; }
       to { opacity: 1; }
     }
+
+    @keyframes clockPulse {
+      0%, 100% { text-shadow: 0 0 20px rgba(217, 119, 6, 0.5); }
+      50% { text-shadow: 0 0 40px rgba(217, 119, 6, 0.8); }
+    }
     
     .animate-slide-down { animation: slideInDown 0.8s ease-out; }
     .animate-slide-up { animation: slideInUp 0.8s ease-out 0.2s both; }
     .animate-fade { animation: fadeIn 1s ease-out 0.4s both; }
+    .animate-clock-pulse { animation: clockPulse 2s ease-in-out infinite; }
     
     .luxury-gradient { background: linear-gradient(135deg, #1a1410 0%, #2d2218 100%); }
     .luxury-text-gradient { background: linear-gradient(135deg, #8b6f47 0%, #d4a574 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
@@ -155,6 +161,11 @@
     <section id="home" class="luxury-gradient pt-32 pb-24 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
       <div class="absolute top-0 right-0 w-96 h-96 bg-gradient-to-br from-amber-600/10 to-transparent rounded-full blur-3xl"></div>
       <div class="absolute bottom-0 left-0 w-96 h-96 bg-gradient-to-tr from-amber-600/10 to-transparent rounded-full blur-3xl"></div>
+      
+      <!-- Live Clock Display - Centered (No Circle) -->
+      <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-0 hidden md:block opacity-20">
+        <div id="clock-display" class="text-9xl font-bold text-amber-300 font-mono tracking-wider animate-clock-pulse">00:00:00</div>
+      </div>
       
       <div class="max-w-6xl mx-auto relative z-10">
         <div class="text-center">
@@ -410,6 +421,22 @@
   </div>
 
   <script>
+    // Live clock function
+    function updateClock() {
+      const clockDisplay = document.getElementById('clock-display');
+      if (clockDisplay) {
+        const now = new Date();
+        const hours = String(now.getHours()).padStart(2, '0');
+        const minutes = String(now.getMinutes()).padStart(2, '0');
+        const seconds = String(now.getSeconds()).padStart(2, '0');
+        clockDisplay.textContent = `${hours}:${minutes}:${seconds}`;
+      }
+    }
+
+    // Update clock every second
+    setInterval(updateClock, 1000);
+    updateClock(); // Initial call
+
     const defaultConfig = {
       hero_title: 'Your IT Expert',
       hero_subtitle: 'Professional IT Solutions & Web Design',
@@ -526,5 +553,5 @@
       observer.observe(el);
     });
   </script>
-<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9cf2e6b6a18d750b',t:'MTc3MTMwNjMxNS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9cf2fa2c546a4edb',t:'MTc3MTMwNzExMi4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
