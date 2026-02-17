@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Koketso IT Solutions - IT & Web Design</title>
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+  <script src="/_sdk/element_sdk.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <style>
+    html, body {
+      scroll-behavior: smooth;
+    }
+    
+    * { font-family: 'Cormorant Garamond', serif; }
+    h1, h2, h3, h4, h5, h6 { font-family: 'Cinzel', serif; letter-spacing: 0.05em; }
+    
+    @keyframes slideInDown {
+      from { opacity: 0; transform: translateY(-30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    @keyframes slideInUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    
+    .animate-slide-down { animation: slideInDown 0.8s ease-out; }
+    .animate-slide-up { animation: slideInUp 0.8s ease-out 0.2s both; }
+    .animate-fade { animation: fadeIn 1s ease-out 0.4s both; }
+    
+    .luxury-gradient { background: linear-gradient(135deg, #1a1410 0%, #2d2218 100%); }
+    .luxury-text-gradient { background: linear-gradient(135deg, #8b6f47 0%, #d4a574 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    
+    .hover-lift { transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1); }
+    .hover-lift:hover { transform: translateY(-8px); }
+    
+    .service-card { 
+      background: linear-gradient(135deg, #f5f5f0 0%, #ffffff 100%);
+      border: 1px solid #e8dcc8;
+      transition: all 0.4s ease;
+    }
+    
+    .service-card:hover {
+      border-color: #8b6f47;
+      box-shadow: 0 20px 40px rgba(139, 111, 71, 0.15);
+      transform: translateY(-10px);
+    }
+    
+    .contact-btn {
+      background: linear-gradient(135deg, #8b6f47 0%, #a0805c 100%);
+      transition: all 0.4s ease;
+      position: relative;
+      overflow: hidden;
+      border: none;
+      cursor: pointer;
+    }
+    
+    .contact-btn:hover {
+      background: linear-gradient(135deg, #6d5835 0%, #8b6f47 100%);
+      transform: scale(1.05);
+      box-shadow: 0 15px 35px rgba(139, 111, 71, 0.3);
+    }
+    
+    .contact-btn::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: rgba(255, 255, 255, 0.1);
+      transition: left 0.4s ease;
+    }
+    
+    .contact-btn:hover::before { left: 100%; }
+    
+    .divider-line {
+      height: 3px;
+      background: linear-gradient(90deg, transparent, #8b6f47, transparent);
+      width: 80px;
+    }
+    
+    .scroll-reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.7s ease;
+    }
+    
+    .scroll-reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    
+    .nav-link {
+      position: relative;
+      padding-bottom: 4px;
+      transition: color 0.3s ease;
+      background: none;
+      border: none;
+      font-family: 'Cormorant Garamond', serif;
+      cursor: pointer;
+    }
+    
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: linear-gradient(90deg, #8b6f47, #d4a574);
+      transition: width 0.4s ease;
+    }
+    
+    .nav-link:hover::after { width: 100%; }
+    
+    @media (max-width: 768px) {
+      .hero-title { font-size: 2.5rem !important; }
+      .hero-subtitle { font-size: 1.125rem !important; }
+    }
+  </style>
+</head>
+<body class="h-full bg-white overflow-x-hidden">
+  <div id="app-wrapper" class="w-full h-full overflow-y-auto">
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 right-0 z-50 luxury-gradient border-b border-amber-900">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between items-center h-20">
+          <div class="flex items-center gap-2 cursor-pointer" onclick="document.getElementById('home').scrollIntoView({behavior:'smooth'})">
+            <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-amber-600 to-amber-800 flex items-center justify-center">
+              <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+              </svg>
+            </div>
+            <span class="text-white font-bold text-lg hidden sm:inline">Koketso IT Solutions</span>
+          </div>
+          <div class="hidden md:flex gap-8">
+            <button onclick="document.getElementById('home').scrollIntoView({behavior:'smooth'})" class="nav-link text-white text-sm font-medium">Home</button>
+            <button onclick="document.getElementById('services').scrollIntoView({behavior:'smooth'})" class="nav-link text-white text-sm font-medium">Services</button>
+            <button onclick="document.getElementById('about').scrollIntoView({behavior:'smooth'})" class="nav-link text-white text-sm font-medium">About</button>
+            <button onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})" class="nav-link text-white text-sm font-medium">Contact</button>
+          </div>
+          <button onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})" class="contact-btn px-6 py-2 text-white text-sm font-semibold rounded-lg">Contact Now</button>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="luxury-gradient pt-32 pb-24 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
+      <div class="absolute top-0 right-0 w-96 h-96 bg-gradient-to-br from-amber-600/10 to-transparent rounded-full blur-3xl"></div>
+      <div class="absolute bottom-0 left-0 w-96 h-96 bg-gradient-to-tr from-amber-600/10 to-transparent rounded-full blur-3xl"></div>
+      
+      <div class="max-w-6xl mx-auto relative z-10">
+        <div class="text-center">
+          <h1 id="hero-title" class="text-5xl md:text-7xl font-bold text-white mb-6 animate-slide-down">Your IT Expert</h1>
+          <p id="hero-subtitle" class="text-xl md:text-2xl text-amber-100 mb-8 animate-slide-up">Professional IT Solutions & Web Design</p>
+          <div class="divider-line mx-auto mb-8 animate-fade"></div>
+          <p class="text-amber-50 text-lg md:text-xl max-w-2xl mx-auto mb-12 leading-relaxed animate-fade" style="animation-delay: 0.6s;">
+            Transform your digital presence with cutting-edge IT services and stunning web design solutions tailored to your needs.
+          </p>
+          <button onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})" class="contact-btn inline-block px-8 py-4 text-white font-semibold text-lg rounded-lg animate-fade" style="animation-delay: 0.8s;">
+            Get Started Today
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="py-20 px-4 sm:px-6 lg:px-8 bg-white">
+      <div class="max-w-6xl mx-auto">
+        <div class="text-center mb-16">
+          <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">Our Services</h2>
+          <div class="divider-line mx-auto"></div>
+          <p class="text-gray-600 text-lg mt-6 max-w-2xl mx-auto">Comprehensive IT and design solutions to elevate your business</p>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-8">
+          <!-- Service 1 -->
+          <div class="service-card scroll-reveal rounded-2xl p-8 hover-lift">
+            <div class="w-16 h-16 rounded-xl bg-gradient-to-br from-amber-500 to-amber-700 flex items-center justify-center mb-6">
+              <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+              </svg>
+            </div>
+            <h3 id="service-1-title" class="text-2xl font-bold text-gray-900 mb-4">IT Solutions</h3>
+            <p class="text-gray-700 leading-relaxed mb-6">
+              Expert IT support, system maintenance, security consultations, and technical solutions to keep your business running smoothly and securely.
+            </p>
+            <ul class="space-y-3 text-gray-600">
+              <li class="flex items-start gap-3">
+                <span class="text-amber-600 font-bold">•</span>
+                <span>Network Setup & Maintenance</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <span class="text-amber-600 font-bold">•</span>
+                <span>System Security & Protection</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <span class="text-amber-600 font-bold">•</span>
+                <span>Technical Support & Troubleshooting</span>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Service 2 -->
+          <div class="service-card scroll-reveal rounded-2xl p-8 hover-lift" style="animation-delay: 0.2s;">
+            <div class="w-16 h-16 rounded-xl bg-gradient-to-br from-amber-500 to-amber-700 flex items-center justify-center mb-6">
+              <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01"/>
+              </svg>
+            </div>
+            <h3 id="service-2-title" class="text-2xl font-bold text-gray-900 mb-4">Web Design</h3>
+            <p class="text-gray-700 leading-relaxed mb-6">
+              Beautiful, responsive websites designed to captivate your audience and drive conversions. From concept to launch, we handle it all.
+            </p>
+            <ul class="space-y-3 text-gray-600">
+              <li class="flex items-start gap-3">
+                <span class="text-amber-600 font-bold">•</span>
+                <span>Custom Website Design</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <span class="text-amber-600 font-bold">•</span>
+                <span>Responsive & Mobile-Friendly</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <span class="text-amber-600 font-bold">•</span>
+                <span>SEO Optimization</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 px-4 sm:px-6 lg:px-8 luxury-gradient">
+      <div class="max-w-6xl mx-auto">
+        <div class="grid md:grid-cols-2 gap-12 items-center">
+          <div class="scroll-reveal">
+            <h2 id="about-title" class="text-4xl md:text-5xl font-bold text-white mb-6">About Me</h2>
+            <div class="divider-line mb-8"></div>
+            <p id="about-text" class="text-amber-50 text-lg leading-relaxed mb-8">
+              With years of experience in IT solutions and web design, I'm dedicated to helping businesses thrive in the digital landscape. My passion is transforming ideas into reality through innovative technology and beautiful design.
+            </p>
+            <div class="space-y-4">
+              <div class="flex items-center gap-4">
+                <div class="w-12 h-12 rounded-full bg-amber-600/20 flex items-center justify-center">
+                  <svg class="w-6 h-6 text-amber-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+                  </svg>
+                </div>
+                <div>
+                  <h3 class="text-white font-bold">Fast & Efficient</h3>
+                  <p class="text-amber-100 text-sm">Quick turnaround without compromising quality</p>
+                </div>
+              </div>
+              <div class="flex items-center gap-4">
+                <div class="w-12 h-12 rounded-full bg-amber-600/20 flex items-center justify-center">
+                  <svg class="w-6 h-6 text-amber-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m7 0a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                  </svg>
+                </div>
+                <div>
+                  <h3 class="text-white font-bold">Professional Quality</h3>
+                  <p class="text-amber-100 text-sm">High standards in every project</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="scroll-reveal" style="animation-delay: 0.2s;">
+            <div class="relative">
+              <div class="absolute inset-0 bg-gradient-to-br from-amber-600 to-amber-800 rounded-2xl transform rotate-3"></div>
+              <div class="relative bg-gradient-to-br from-white/95 to-white rounded-2xl p-8 shadow-2xl">
+                <div class="flex items-center justify-center h-64">
+                  <div class="text-center">
+                    <div class="w-20 h-20 rounded-full bg-gradient-to-br from-amber-500 to-amber-700 mx-auto mb-4 flex items-center justify-center">
+                      <svg class="w-12 h-12 text-white" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                      </svg>
+                    </div>
+                    <p class="text-gray-800 font-bold text-lg">Koketso Hlabirwa</p>
+                    <p class="text-amber-600 font-semibold">IT Expert & Web Designer</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 px-4 sm:px-6 lg:px-8 bg-white relative">
+      <div class="absolute top-0 right-0 w-96 h-96 bg-gradient-to-br from-amber-600/5 to-transparent rounded-full blur-3xl"></div>
+      
+      <div class="max-w-6xl mx-auto relative z-10">
+        <div class="text-center mb-16">
+          <h2 id="contact-title" class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">Get In Touch</h2>
+          <div class="divider-line mx-auto"></div>
+          <p class="text-gray-600 text-lg mt-6">Ready to start your next project? Contact me today!</p>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-12">
+          <!-- Contact Info -->
+          <div class="scroll-reveal space-y-8">
+            <div class="flex gap-6">
+              <div class="w-16 h-16 rounded-xl bg-gradient-to-br from-amber-500 to-amber-700 flex items-center justify-center flex-shrink-0">
+                <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                </svg>
+              </div>
+              <div>
+                <h3 class="text-xl font-bold text-gray-900 mb-2">Email</h3>
+                <a id="email-link" href="mailto:koketsohlabirwa02@gmail.com" class="text-amber-600 hover:text-amber-700 font-semibold transition-colors">koketsohlabirwa02@gmail.com</a>
+              </div>
+            </div>
+
+            <div class="flex gap-6">
+              <div class="w-16 h-16 rounded-xl bg-gradient-to-br from-amber-500 to-amber-700 flex items-center justify-center flex-shrink-0">
+                <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
+                </svg>
+              </div>
+              <div>
+                <h3 class="text-xl font-bold text-gray-900 mb-2">Phone</h3>
+                <a id="phone-link" href="tel:0646646912" class="text-amber-600 hover:text-amber-700 font-semibold transition-colors">0646646912</a>
+              </div>
+            </div>
+
+            <div class="flex gap-6">
+              <div class="w-16 h-16 rounded-xl bg-gradient-to-br from-amber-500 to-amber-700 flex items-center justify-center flex-shrink-0">
+                <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+                </svg>
+              </div>
+              <div>
+                <h3 class="text-xl font-bold text-gray-900 mb-2">Location</h3>
+                <p class="text-gray-700 font-semibold">Available for projects worldwide</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Quick Contact Card -->
+          <div class="scroll-reveal" style="animation-delay: 0.2s;">
+            <div class="bg-gradient-to-br from-amber-50 to-white rounded-2xl p-8 border border-amber-200 shadow-xl">
+              <h3 class="text-2xl font-bold text-gray-900 mb-6">Ready to Collaborate?</h3>
+              
+              <div class="space-y-4 mb-8">
+                <div class="flex items-center gap-3">
+                  <div class="w-10 h-10 rounded-full bg-gradient-to-br from-amber-500 to-amber-700 flex items-center justify-center">
+                    <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 20 20">
+                      <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                    </svg>
+                  </div>
+                  <span class="text-gray-700">Professional & Reliable</span>
+                </div>
+                <div class="flex items-center gap-3">
+                  <div class="w-10 h-10 rounded-full bg-gradient-to-br from-amber-500 to-amber-700 flex items-center justify-center">
+                    <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 20 20">
+                      <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                    </svg>
+                  </div>
+                  <span class="text-gray-700">Quick Response Time</span>
+                </div>
+                <div class="flex items-center gap-3">
+                  <div class="w-10 h-10 rounded-full bg-gradient-to-br from-amber-500 to-amber-700 flex items-center justify-center">
+                    <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 20 20">
+                      <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                    </svg>
+                  </div>
+                  <span class="text-gray-700">Tailored Solutions</span>
+                </div>
+              </div>
+
+              <div class="space-y-3">
+                <a id="contact-email-btn" href="mailto:koketsohlabirwa02@gmail.com" class="contact-btn block w-full text-center py-4 text-white font-semibold rounded-lg text-lg">
+                  Send an Email
+                </a>
+                <a id="contact-phone-btn" href="tel:0646646912" class="block w-full py-4 px-6 text-center text-amber-600 font-semibold rounded-lg border-2 border-amber-600 hover:bg-amber-50 transition-colors">
+                  Call Me
+                </a>
+              </div>
+
+              <p class="text-center text-gray-500 text-sm mt-6">
+                I respond to all inquiries within 24 hours
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="luxury-gradient border-t border-amber-900 py-12 px-4 sm:px-6 lg:px-8">
+      <div class="max-w-6xl mx-auto">
+        <div class="text-center text-amber-100">
+          <p class="mb-2">&copy; 2026 Koketso IT Solutions. All rights reserved.</p>
+          <p class="text-sm text-amber-200">Transforming ideas into digital excellence</p>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    const defaultConfig = {
+      hero_title: 'Your IT Expert',
+      hero_subtitle: 'Professional IT Solutions & Web Design',
+      about_title: 'About Me',
+      about_text: 'With years of experience in IT solutions and web design, I\'m dedicated to helping businesses thrive in the digital landscape. My passion is transforming ideas into reality through innovative technology and beautiful design.',
+      service_1_title: 'IT Solutions',
+      service_2_title: 'Web Design',
+      contact_title: 'Get In Touch',
+      phone: '0646646912',
+      email: 'koketsohlabirwa02@gmail.com',
+      primary_color: '#8b6f47',
+      secondary_color: '#1a1410',
+      accent_color: '#d4a574'
+    };
+
+    const elementConfig = {
+      defaultConfig,
+      
+      onConfigChange: async (config) => {
+        const heroTitle = document.getElementById('hero-title');
+        if (heroTitle) heroTitle.textContent = config.hero_title || defaultConfig.hero_title;
+        
+        const heroSubtitle = document.getElementById('hero-subtitle');
+        if (heroSubtitle) heroSubtitle.textContent = config.hero_subtitle || defaultConfig.hero_subtitle;
+        
+        const aboutTitle = document.getElementById('about-title');
+        if (aboutTitle) aboutTitle.textContent = config.about_title || defaultConfig.about_title;
+        
+        const aboutText = document.getElementById('about-text');
+        if (aboutText) aboutText.textContent = config.about_text || defaultConfig.about_text;
+        
+        const service1Title = document.getElementById('service-1-title');
+        if (service1Title) service1Title.textContent = config.service_1_title || defaultConfig.service_1_title;
+        
+        const service2Title = document.getElementById('service-2-title');
+        if (service2Title) service2Title.textContent = config.service_2_title || defaultConfig.service_2_title;
+        
+        const contactTitle = document.getElementById('contact-title');
+        if (contactTitle) contactTitle.textContent = config.contact_title || defaultConfig.contact_title;
+        
+        const phone = config.phone || defaultConfig.phone;
+        const email = config.email || defaultConfig.email;
+        
+        const phoneLink = document.getElementById('phone-link');
+        if (phoneLink) {
+          phoneLink.href = `tel:${phone}`;
+          phoneLink.textContent = phone;
+        }
+        
+        const emailLink = document.getElementById('email-link');
+        if (emailLink) {
+          emailLink.href = `mailto:${email}`;
+          emailLink.textContent = email;
+        }
+        
+        const contactPhoneBtn = document.getElementById('contact-phone-btn');
+        if (contactPhoneBtn) contactPhoneBtn.href = `tel:${phone}`;
+        
+        const contactEmailBtn = document.getElementById('contact-email-btn');
+        if (contactEmailBtn) contactEmailBtn.href = `mailto:${email}`;
+      },
+      
+      mapToCapabilities: (config) => ({
+        recolorables: [
+          {
+            get: () => config.primary_color || defaultConfig.primary_color,
+            set: (value) => window.elementSdk.setConfig({ primary_color: value })
+          },
+          {
+            get: () => config.secondary_color || defaultConfig.secondary_color,
+            set: (value) => window.elementSdk.setConfig({ secondary_color: value })
+          },
+          {
+            get: () => config.accent_color || defaultConfig.accent_color,
+            set: (value) => window.elementSdk.setConfig({ accent_color: value })
+          }
+        ],
+        borderables: [],
+        fontEditable: undefined,
+        fontSizeable: undefined
+      }),
+      
+      mapToEditPanelValues: (config) => new Map([
+        ['hero_title', config.hero_title || defaultConfig.hero_title],
+        ['hero_subtitle', config.hero_subtitle || defaultConfig.hero_subtitle],
+        ['about_title', config.about_title || defaultConfig.about_title],
+        ['about_text', config.about_text || defaultConfig.about_text],
+        ['service_1_title', config.service_1_title || defaultConfig.service_1_title],
+        ['service_2_title', config.service_2_title || defaultConfig.service_2_title],
+        ['contact_title', config.contact_title || defaultConfig.contact_title],
+        ['phone', config.phone || defaultConfig.phone],
+        ['email', config.email || defaultConfig.email]
+      ])
+    };
+
+    if (window.elementSdk) {
+      window.elementSdk.init(elementConfig);
+    }
+
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, observerOptions);
+
+    document.querySelectorAll('.scroll-reveal').forEach(el => {
+      observer.observe(el);
+    });
+  </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9cf2e6b6a18d750b',t:'MTc3MTMwNjMxNS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
